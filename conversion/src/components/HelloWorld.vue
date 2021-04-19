@@ -1,17 +1,19 @@
 <!--  -->
 <template>
-  <div class="context">
-    <a-card class="contextbox">
+  <div class="cardbox">
       <p>进制转换</p>
+      <a-divider />
+    <a-card class="contextbox" hoverable :bordered="false">
       <div>
         <a-radio-group
-          :options="plainOptions"
           :default-value="value1"
+          :options="plainOptions"
           @change="onChange1"
           class="box"
           v-model="value1"
         />
         <a-select
+        v-model="value1"
           :default-value="value1 + '进制'"
           style="width: 100px"
           @change="handleChange"
@@ -36,6 +38,7 @@
           v-model="value2"
         />
         <a-select
+        v-model="value2"
           :default-value="value2 + '进制'"
           style="width: 100px"
           @change="handleChange2"
@@ -59,16 +62,16 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 const plainOptions = [
-  { label: "2进制", value: "2" },
-  { label: "8进制", value: "8" },
-  { label: "10进制", value: "10" },
-  { label: "16进制", value: "16" },
+  { label: "2进制", value: 2 },
+  { label: "8进制", value: 8 },
+  { label: "10进制", value: 10 },
+  { label: "16进制", value: 16 },
 ];
 const plainOptions1 = [
-  { label: "2进制", value: "2" },
-  { label: "8进制", value: "8" },
-  { label: "10进制", value: "10" },
-  { label: "16进制", value: "16" },
+  { label: "2进制", value: 2 },
+  { label: "8进制", value: 8 },
+  { label: "10进制", value: 10 },
+  { label: "16进制", value: 16 },
 ];
 export default {
   name: "",
@@ -80,8 +83,8 @@ export default {
     return {
       plainOptions,
       plainOptions1,
-      value1: "2",
-      value2: "8",
+      value1: 2,
+      value2: 8,
       num1: "",
       num2: "",
       c2: 0,
@@ -102,6 +105,8 @@ export default {
       this.value1 = +e.target.value;
       this.num1 = "";
       this.num2 = "";
+      console.log('dd',e.target.value);
+
     },
     num16() {
       let intp = +this.num1;
@@ -260,19 +265,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
-.context {
+.cardbox {
   height: 100%;
-  max-width: 960px;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 .contextbox {
   justify-content: center;
   align-items: center;
   display: flex;
-  width: 500px;
+  // width: 600px;
+  // padding: 30px;
+      margin: auto;
+      // height: 100%;
   >>> .ant-card-body {
     justify-content: center;
     align-items: center;

@@ -2,6 +2,7 @@
 <template>
   <div class="box">
     <p>导出数据</p>
+    <a-divider />
     <div class="contextbox">
       <!-- layout="inline" -->
       <a-form-model
@@ -15,7 +16,11 @@
           :wrapper-col="formItemLayout.wrapperCol"
           label="前缀名"
         >
-          <a-input v-model="formInline.label" placeholder="前缀" style="width: 300px">
+          <a-input
+            v-model="formInline.label"
+            placeholder="前缀"
+            style="width: 300px"
+          >
             <a-icon
               slot="prefix"
               type="user"
@@ -28,7 +33,11 @@
           :wrapper-col="formItemLayout.wrapperCol"
           label="开始值"
         >
-          <a-input v-model="formInline.user" placeholder="start" style="width: 300px">
+          <a-input
+            v-model="formInline.user"
+            placeholder="start"
+            style="width: 300px"
+          >
             <a-icon
               slot="prefix"
               type="user"
@@ -41,7 +50,11 @@
           :wrapper-col="formItemLayout.wrapperCol"
           label="结束值"
         >
-          <a-input v-model="formInline.password" placeholder="end" style="width: 300px">
+          <a-input
+            v-model="formInline.password"
+            placeholder="end"
+            style="width: 300px"
+          >
             <a-icon
               slot="prefix"
               type="lock"
@@ -54,12 +67,26 @@
           :wrapper-col="formItemLayout.wrapperCol"
           label="文件名"
         >
-          <a-input v-model="formInline.filename" placeholder="filename" style="width: 300px">
+          <a-input
+            v-model="formInline.filename"
+            placeholder="filename"
+            style="width: 300px"
+          >
             <a-icon
               slot="prefix"
               type="lock"
               style="color: rgba(0, 0, 0, 0.25)"
             />
+            <a-select
+              slot="addonAfter"
+              default-value=".csv"
+              style="width: 80px"
+              @change="handleChange"
+            >
+              <a-select-option value=".csv"> .csv </a-select-option>
+              <a-select-option value=".xls"> .xls </a-select-option>
+              <a-select-option value=".xlsx"> .xlsx </a-select-option>
+            </a-select>
           </a-input>
         </a-form-model-item>
         <a-form-model-item
@@ -114,6 +141,7 @@ export default {
         user: "",
         password: "",
         filename: "数据表",
+        sufname: ".csv",
       },
       list: [],
       strdata: "",
@@ -125,6 +153,11 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    //表格类型选项 三种类型
+    handleChange(e) {
+      this.formInline.sufname = e;
+      // console.log(e);
+    },
     handleSubmit(e) {
       // console.log(this.formInline);
       this.loopfun();
@@ -162,8 +195,9 @@ export default {
       const link = document.createElement("a");
       link.href = uri;
       // 对下载的文件命名
-      link.download = `${this.formInline.filename}.csv`;
+      link.download = `${this.formInline.filename}+${this.formInline.sufname}`;
       link.click();
+       this.$message.success('操作成功！');
     },
     two() {
       // 要导出的json数据
@@ -225,20 +259,23 @@ export default {
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
-.contextbox{
-     height: 100%;
+.contextbox {
+  height: 100%;
+   justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
-.box{
+.box {
   margin: 0 auto;
   height: 100%;
 }
-.formbox{
-      width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
+.formbox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

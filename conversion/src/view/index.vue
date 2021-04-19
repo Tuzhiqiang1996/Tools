@@ -3,8 +3,10 @@
   <div class="" style="height: 100%">
     <a-layout id="components-layout-demo-custom-trigger" style="height: 100%">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-        <div class="logo" />
-          <!-- :default-selected-keys="defaultspage" -->
+        <div class="logo">
+          <img src="../assets/1.gif" alt="" style="width: 100% " />
+        </div>
+        <!-- :default-selected-keys="defaultspage" -->
         <a-menu
           theme="dark"
           mode="inline"
@@ -12,7 +14,7 @@
           :defaultSelectedKeys="defaultspage"
         >
           <a-menu-item key="1">
-            <a-icon type="user" />
+            <a-icon type="edit" />
             <span>进制转换</span>
           </a-menu-item>
           <a-menu-item key="2">
@@ -41,7 +43,7 @@
             minHeight: '280px',
           }"
         >
-          <HelloWorld :defaultspage="defaultspage"/>
+          <HelloWorld :defaultspage="defaultspage" />
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -71,7 +73,7 @@ export default {
   //方法集合
   methods: {
     handchange(e) {
-      this.defaultspage =[ e.key];
+      this.defaultspage = [e.key];
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
