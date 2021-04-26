@@ -174,6 +174,7 @@ export default {
         list.push(v4);
       }
       this.list = list;
+      // console.log(list);
       this.Arraylist();
     },
     //导出到
@@ -197,7 +198,7 @@ export default {
       // 对下载的文件命名
       link.download = `${this.formInline.filename}+${this.formInline.sufname}`;
       link.click();
-       this.$message.success('操作成功！');
+      this.$message.success("操作成功！");
     },
     two() {
       // 要导出的json数据
@@ -261,10 +262,10 @@ export default {
 //@import url(); 引入公共css类
 .contextbox {
   height: 100%;
-   justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .box {
   margin: 0 auto;

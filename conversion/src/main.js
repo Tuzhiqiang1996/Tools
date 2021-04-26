@@ -4,10 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Antd from 'ant-design-vue';
+import axios from "axios";
 import 'ant-design-vue/dist/antd.css';
 Vue.config.productionTip = false
 Vue.use(Antd);
-
+Vue.prototype.$axios = axios; //this.$axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
